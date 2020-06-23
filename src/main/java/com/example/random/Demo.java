@@ -17,8 +17,12 @@ public class Demo {
             e.getMessage();
         }
         //aabcacabba
+        
         String result= stringMinimization("aabcacabba");
         System.out.println("String minimization: " + result);
+        Object o = "abc";
+        String reslt= stringMinimization(o);
+        
 
         int[] c= {1,2,2,1,3,6,4,4,4};
         //Arrays.stream(c).map(i -> i/0).forEach(System.out::println);
@@ -68,7 +72,7 @@ public class Demo {
         String leftPart= str.substring(0,str.length()/2);
         String rightPart= str.substring(str.length()/2);
         System.out.println( " left part: " +leftPart+ " right part: "+ rightPart);
-
+        System.out.println( "After rotating and remove repeated words from between of: " +rightPart+leftPart);
         int i=-1,j=rightPart.length();
         while(i<leftPart.length()-1){
             i++;j--;
@@ -89,6 +93,10 @@ public class Demo {
         }
         return "";
     }
+     
+     private static String stringMinimization(Object str) {
+        return "";
+     }
 
     void display(int l) throws FileNotFoundException {
         int[] a;

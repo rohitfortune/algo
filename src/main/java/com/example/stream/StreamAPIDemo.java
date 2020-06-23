@@ -111,7 +111,7 @@ public class StreamAPIDemo {
         List<Book> bookList = new ArrayList<>();
         bookList.add(new Book("The Fellowship of the Ring", 1954, "0395489318"));
         bookList.add(new Book("The Two Towers", 1954, "0345339711"));
-        bookList.add(new Book("The Return of the King", 1955, "0618129111"));
+        bookList.add(new Book("The Return of the King", 1956, "0618129111"));
         bookList.add(new Book("The Return of the King", 1955, "0618129111"));
         return bookList;
     }

@@ -8,4 +8,9 @@
 	<name>Algorithms-DataStructures</name>
 	<description>Project for Algorithms and Data Structures</description>
 
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	
+	
 </project>
