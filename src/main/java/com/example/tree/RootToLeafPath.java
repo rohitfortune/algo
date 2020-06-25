@@ -4,7 +4,7 @@ package com.example.tree;
 //Java program to print all the node to leaf path 
 
 
-public class PrintAllLeafNode 
+public class RootToLeafPath 
 { 
 	Node root; 
 	
@@ -62,7 +62,7 @@ public class PrintAllLeafNode
 		 *  3   5   2
 		 * 
 		 * */
-		PrintAllLeafNode tree = new PrintAllLeafNode(); 
+		RootToLeafPath tree = new RootToLeafPath(); 
 		tree.root = new Node(10); 
 		tree.root.left = new Node(8); 
 		tree.root.right = new Node(2); 

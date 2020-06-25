@@ -17,23 +17,12 @@ class NodeNext {
 public class ConnectNodesAtSameLevel {
 	NodeNext root;
 
-	// Sets the nextRight of root and calls connectRecur()
-	// for other nodes
-	void connect(NodeNext p) {
-
-		// Set the nextRight for root
-		p.nextRight = null;
-
-		// Set the next right for rest of the nodes (other
-		// than root)
-		connectRecur(p);
-	}
-
+	
 	/*
-	 * Set next right of all descendents of p. Assumption: p is a compete binary
+	 * Set next right of all descendents of p. Assumption: p is a binary
 	 * tree
 	 */
-	void connectRecur(NodeNext p) {
+	void connect(NodeNext p) {
 		// Base case
 		if (p == null)
 			return;
@@ -49,17 +38,23 @@ public class ConnectNodesAtSameLevel {
 			p.right.nextRight = (p.nextRight != null) ? p.nextRight.left : null;
 
 		// Set nextRight for other nodes in pre order fashion
-		connectRecur(p.left);
-		connectRecur(p.right);
+		connect(p.left);
+		connect(p.right);
 	}
 
 	// Driver program to test above functions
 	public static void main(String args[]) {
-		ConnectNodesAtSameLevel tree = new ConnectNodesAtSameLevel();
+		
 
 		/*
-		 * Constructed binary tree is 10 / \ 8 2 / 3
+		 * Constructed binary tree is 
+		 * 							   10 
+		 * 							  /  \ 
+		 * 							 8    2 
+		 * 							/ 
+		 * 						   3
 		 */
+		ConnectNodesAtSameLevel tree = new ConnectNodesAtSameLevel();
 		tree.root = new NodeNext(10);
 		tree.root.left = new NodeNext(8);
 		tree.root.right = new NodeNext(2);

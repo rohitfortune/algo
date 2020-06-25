@@ -52,7 +52,7 @@ public class FindLargestSubBST {
 		a) Get the maximum value in left subtree (Stored in *max_ref) 
 		b) Check whether Left Subtree is BST or not (Stored in *is_bst_ref) 
 		c) Get the size of maximum size BST in left subtree (updates *max_size) */
-		val.max = Integer.MIN_VALUE; 
+		//val.max = Integer.MIN_VALUE; 
 		ls = largestBSTUtil(node.left); 
 		if (val.is_bst == true && node.data > val.max) { 
 			left_flag = true; 

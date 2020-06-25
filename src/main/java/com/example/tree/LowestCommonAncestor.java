@@ -67,6 +67,12 @@ public class LowestCommonAncestor
     // Driver code
     public static void main(String[] args)
     {
+    	/*		   1
+    	 * 		 /   \
+    	 * 		2     3
+    	 * 	   / \   / \
+    	 *    4   5 6   7
+    	 * */
         LowestCommonAncestor tree = new LowestCommonAncestor();
         tree.root = new Node(1);
         tree.root.left = new Node(2);
