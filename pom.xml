@@ -5,7 +5,27 @@
 	<groupId>com.rohit.example</groupId>
 	<artifactId>algo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Algorithms-DataStructures</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <name>Algorithms-DataStructures</name>
 	<description>Project for Algorithms and Data Structures</description>
 
 	<properties>

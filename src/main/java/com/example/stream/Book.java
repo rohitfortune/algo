@@ -59,11 +59,11 @@ public class Book implements Comparable<Book>{
     public int hashCode() {
         return Objects.hash(name, releaseYear, isbn);
     }
-    
+
+    @Override
 	public int compareTo(Book o) {
-		if (!(o instanceof Book))
-            throw new ClassCastException();
-        Book b = (Book)o;
-        return  this.getName().compareTo(b.getName());		
+		if (o == null)
+            throw new IllegalArgumentException();
+        return  this.getName().compareTo(o.getName());
 	}
 }
