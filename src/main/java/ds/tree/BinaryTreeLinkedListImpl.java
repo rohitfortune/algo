@@ -121,7 +121,7 @@ public class BinaryTreeLinkedListImpl {
         preTraversal(root.right);
     }
 
-    public void levelTraverse(Node root){
+    public void levelTraversal(Node root){
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()){
@@ -153,12 +153,12 @@ public class BinaryTreeLinkedListImpl {
         System.out.println("\nPostOrder Traversal: ");
         tree.postTraversal(tree.root);
         System.out.println("\nLevel Traversal: ");
-        tree.levelTraverse(tree.root);
+        tree.levelTraversal(tree.root);
         tree.delete();
         System.out.println("\nLevel Traversal: ");
-        tree.levelTraverse(tree.root);
+        tree.levelTraversal(tree.root);
         tree.delete(2);
         System.out.println("\nLevel Traversal: ");
-        tree.levelTraverse(tree.root);
+        tree.levelTraversal(tree.root);
     }
 }

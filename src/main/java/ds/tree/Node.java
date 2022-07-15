@@ -1,7 +1,7 @@
 package ds.tree;
 
 public class Node {
-    int data;
+    int data, height;
     Node left, right;
 
     Node(int value) {

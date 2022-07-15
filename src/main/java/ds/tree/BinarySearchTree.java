@@ -1,7 +1,7 @@
 package ds.tree;
 
 //Java program to demonstrate delete operation in binary search tree 
-public class DeleteNodeBST 
+public class BinarySearchTree
 { 
 	// Root of BST 
 	Node root; 
@@ -36,7 +36,7 @@ public class DeleteNodeBST
 
 			// node with two children: Get the inorder successor (smallest 
 			// in the right subtree) 
-			root.data = minValue(root.right); 
+			root.data = minValueRecursive(root.right);
 
 			// Delete the inorder successor 
 			root.right = deleteRec(root.right, root.data); 
@@ -54,7 +54,15 @@ public class DeleteNodeBST
 			root = root.left; 
 		} 
 		return minv; 
-	} 
+	}
+
+	int minValueRecursive(Node root)
+	{
+		if (root.left == null){
+			return root.data;
+		}
+		return minValueRecursive(root.left);
+	}
 
 	// This method mainly calls insertRec() 
 	void insert(int key) 
@@ -87,7 +95,14 @@ public class DeleteNodeBST
 	void inorder() 
 	{ 
 		inorderRec(root); 
-	} 
+	}
+	void preOrderTraversal() {
+		preOrderTraversal(root);
+	}
+
+	void postOrderTraversal() {
+		postOrderTraversal(root);
+	}
 
 	// A utility function to do inorder traversal of BST 
 	void inorderRec(Node root) 
@@ -98,12 +113,48 @@ public class DeleteNodeBST
 			System.out.print(root.data + " "); 
 			inorderRec(root.right); 
 		} 
-	} 
+	}
+
+	void preOrderTraversal(Node root){
+		if (root != null)
+		{
+			System.out.print(root.data + " ");
+			preOrderTraversal(root.left);
+			preOrderTraversal(root.right);
+		}
+	}
+
+	void postOrderTraversal(Node root){
+		if (root != null)
+		{
+			postOrderTraversal(root.left);
+			postOrderTraversal(root.right);
+			System.out.print(root.data + " ");
+		}
+	}
+
+	Node search(int value){
+		return search(root, value);
+	}
+
+	Node search(Node root, int value){
+		if (root == null)
+			return null;
+		else if (value < root.data){
+			return search(root.left, value);
+		}
+		else if (value > root.data){
+			return search(root.right, value);
+		}
+		else {
+			return root;
+		}
+	}
 
 	// Driver Program to test above functions 
 	public static void main(String[] args) 
 	{ 
-		DeleteNodeBST tree = new DeleteNodeBST(); 
+		BinarySearchTree tree = new BinarySearchTree();
 
 		/* Let us create following BST 
 		    50 
@@ -120,7 +171,16 @@ public class DeleteNodeBST
 		tree.insert(80); 
 
 		System.out.println("Inorder traversal of the given tree"); 
-		tree.inorder(); 
+		tree.inorder();
+		System.out.println("\nPost order traversal of the given tree");
+		tree.postOrderTraversal();
+		System.out.println("\nPre order traversal of the given tree");
+		tree.preOrderTraversal();
+		Node n = tree.search( 55);
+		if (n != null)
+			System.out.println("\nFound "+ n.data);
+		else
+			System.out.println("\nNot Found");
 
 		System.out.println("\nDelete 20"); 
 		tree.deleteKey(20); 
@@ -136,5 +196,6 @@ public class DeleteNodeBST
 		tree.deleteKey(50); 
 		System.out.println("Inorder traversal of the modified tree"); 
 		tree.inorder(); 
-	} 
+	}
+
 } 
