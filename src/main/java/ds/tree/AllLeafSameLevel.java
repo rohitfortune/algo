@@ -9,7 +9,7 @@ public class AllLeafSameLevel
 
     /* Recursive function which checks whether all leaves are at same
     level */
-    boolean checkUtil(Node node, int level, int leafLevel)
+    boolean checkUtil(Node node, int level)
     {
         // Base case
         if (node == null)
@@ -33,8 +33,8 @@ public class AllLeafSameLevel
 
         // If this node is not leaf, recursively check left and right
         // subtrees
-        return checkUtil(node.left, level + 1, leafLevel)
-                && checkUtil(node.right, level + 1, leafLevel);
+        return checkUtil(node.left, level + 1)
+                && checkUtil(node.right, level + 1);
     }
 
     public static void main(String args[])
@@ -47,7 +47,7 @@ public class AllLeafSameLevel
         tree.root.left.right = new Node(9);
         tree.root.left.left.left = new Node(1);
         tree.root.left.right.left = new Node(1);
-        if (tree.checkUtil(tree.root,0,tree.leafLevel))
+        if (tree.checkUtil(tree.root,0))
             System.out.println("Leaves are at same level");
         else
             System.out.println("Leaves are not at same level");
