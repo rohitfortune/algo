@@ -1,4 +1,4 @@
-package ds.sorting;
+package algorithms.sorting;
 
 import ds.heap.MyBinaryHeap;
 

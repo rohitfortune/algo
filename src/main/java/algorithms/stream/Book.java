@@ -1,4 +1,4 @@
-package ds.stream;
+package algorithms.stream;
 import java.util.Objects;
 
 public class Book implements Comparable<Book>{

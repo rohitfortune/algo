@@ -1,4 +1,4 @@
-package ds.sorting;
+package algorithms.sorting;
 
 //Counting sort which takes negative numbers as well 
 import java.util.*; 

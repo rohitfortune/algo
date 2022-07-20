@@ -1,4 +1,4 @@
-package ds.stream;
+package algorithms.stream;
 
 import java.io.IOException;
 import java.nio.file.Files;

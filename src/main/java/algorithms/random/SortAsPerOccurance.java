@@ -1,4 +1,4 @@
-package ds.random;
+package algorithms.random;
 
 import java.util.ArrayList;
 import java.util.Arrays;

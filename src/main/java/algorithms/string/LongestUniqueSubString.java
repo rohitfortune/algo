@@ -1,4 +1,4 @@
-package ds.string;
+package algorithms.string;
 import java.util.Arrays;
 
 public class LongestUniqueSubString {

@@ -1,4 +1,4 @@
-package ds.random;
+package algorithms.random;
 
 import java.io.File;
 //Java Program illustrating that we can read a file in 

@@ -1,4 +1,4 @@
-package ds.oops;
+package algorithms.oops;
 
 class One{
 	

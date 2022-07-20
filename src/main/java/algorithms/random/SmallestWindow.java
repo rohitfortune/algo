@@ -1,4 +1,4 @@
-package ds.random;
+package algorithms.random;
 
 //Java program to find the smallest window containing 
 //all characters of a pattern. 

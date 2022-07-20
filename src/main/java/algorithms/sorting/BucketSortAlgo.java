@@ -1,9 +1,6 @@
-package ds.sorting;
+package algorithms.sorting;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BucketSortAlgo {
 
@@ -14,7 +11,7 @@ public class BucketSortAlgo {
         bucketSort(intArr);
         System.out.println("Sorted array after bucket sort- " + Arrays.toString(intArr));
     }
-    
+
     private static void bucketSort(int[] intArr){
     	int noOfBuckets =10;
         // Create bucket array
@@ -30,13 +27,10 @@ public class BucketSortAlgo {
             //System.out.println("hash- " + hash(num));
             buckets[hash(num)].add(num);
         }
-        // sort buckets
+        // sort buckets and Merge buckets to get sorted array
+        int i=0;
         for(List<Integer> bucket : buckets){
             Collections.sort(bucket);
-        }
-        int i = 0;
-        // Merge buckets to get sorted array
-        for(List<Integer> bucket : buckets){
             for(int num : bucket){
                 intArr[i++] = num;
             }

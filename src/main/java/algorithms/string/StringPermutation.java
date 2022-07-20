@@ -1,4 +1,4 @@
-package ds.string;
+package algorithms.string;
 
 public class StringPermutation {
 

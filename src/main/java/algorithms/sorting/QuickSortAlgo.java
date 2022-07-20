@@ -1,4 +1,4 @@
-package ds.sorting;
+package algorithms.sorting;
 
 //Java program for implementation of QuickSort 
 public class QuickSortAlgo 
