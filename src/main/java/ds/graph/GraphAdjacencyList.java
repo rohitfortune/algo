@@ -60,6 +60,7 @@ public class GraphAdjacencyList {
             if (!node.isVisited){
                 vistDfs(node);
             }
+            //Marking all node isVisited false again
             node.isVisited=false;
         }
     }
@@ -86,8 +87,67 @@ public class GraphAdjacencyList {
             if (!node.isVisited){
                 visitBfs(node);
             }
+            //Marking all node isVisited false again
            node.isVisited=false;
         }
+    }
+
+    // Topological Sort
+    public void addDirectedEdge(int i, int j) {
+        GraphNode first = graphNodes.get(i);
+        GraphNode second = graphNodes.get(j);
+        first.neighbors.add(second);
+    }
+
+    public void topologicalVisit(GraphNode node, Stack<GraphNode> stack){
+        for (GraphNode neighbour : node.neighbors){
+            if (!neighbour.isVisited){
+                topologicalVisit(neighbour, stack);
+            }
+        }
+        node.isVisited=true;
+        stack.push(node);
+    }
+
+    public void topologicalSort(){
+        System.out.println("Topological Sort: ");
+        Stack<GraphNode> stack = new Stack<>();
+        for (GraphNode node : graphNodes){
+            if (!node.isVisited)
+                topologicalVisit(node, stack);
+        }
+        while (!stack.isEmpty()){
+            System.out.print(stack.pop().name+" ");
+        }
+    }
+
+    public void BFSforSSSPP(GraphNode node){
+        Queue<GraphNode> queue = new LinkedList<>();
+        queue.add(node);
+        node.isVisited=true;
+        while (!queue.isEmpty()){
+            GraphNode currentNode = queue.remove();
+            System.out.println("\nPrinting path for "+ currentNode.name);
+            printPath(currentNode);
+            for (GraphNode neighbour: currentNode.neighbors){
+                if (!neighbour.isVisited){
+                    queue.add(neighbour);
+                    neighbour.isVisited=true;
+                    neighbour.parent=currentNode;
+                }
+            }
+        }
+        //Marking all node isVisited false again
+        for (GraphNode n : graphNodes){
+            n.isVisited=false;
+        }
+    }
+
+    private void printPath(GraphNode node) {
+        if (node.parent != null){
+            printPath(node.parent);
+        }
+        System.out.print(node.name+" ");
     }
 
 
@@ -115,5 +175,28 @@ public class GraphAdjacencyList {
 
         graph.dfs();
         graph.bfs();
+        graph.BFSforSSSPP(nodeList.get(0));
+
+        nodeList = new ArrayList<>();
+        nodeList.add(new GraphNode("A",0));
+        nodeList.add(new GraphNode("B",1));
+        nodeList.add(new GraphNode("C",2));
+        nodeList.add(new GraphNode("D",3));
+        nodeList.add(new GraphNode("E",4));
+        nodeList.add(new GraphNode("F",5));
+        nodeList.add(new GraphNode("G",6));
+        nodeList.add(new GraphNode("H",7));
+
+        GraphAdjacencyList directedGraph = new GraphAdjacencyList(nodeList);
+        directedGraph.addDirectedEdge(0,2);
+        directedGraph.addDirectedEdge(1,2);
+        directedGraph.addDirectedEdge(1,3);
+        directedGraph.addDirectedEdge(2,4);
+        directedGraph.addDirectedEdge(3,5);
+        directedGraph.addDirectedEdge(5,6);
+        directedGraph.addDirectedEdge(4,7);
+        directedGraph.addDirectedEdge(4,5);
+        System.out.println("\nDirected Graph: \n"+directedGraph.toString());
+        directedGraph.topologicalSort();
     }
 }

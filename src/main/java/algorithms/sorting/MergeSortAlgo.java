@@ -6,70 +6,57 @@ public class MergeSortAlgo {
 	// Merges two subarrays of arr[]. 
 	// First subarray is arr[l..m] 
 	// Second subarray is arr[m+1..r] 
-	void merge(int arr[], int l, int m, int r) 
-	{ 
-		// Find sizes of two subarrays to be merged 
-		int n1 = m - l + 1; 
-		int n2 = r - m; 
+	void merge(int[] arr, int l, int m, int r){
+
+		// Find sizes of two subarrays to be merged
+		int n1 = m-l+2;
+		int n2 = r-m+1;
 
 		/* Create temp arrays */
-		int L[] = new int[n1]; 
-		int R[] = new int[n2]; 
+		int[] arr1 = new int[n1];
+		int[] arr2 = new int[n2];
 
 		/*Copy data to temp arrays*/
-		for (int i = 0; i < n1; ++i) 
-			L[i] = arr[l + i]; 
-		for (int j = 0; j < n2; ++j) 
-			R[j] = arr[m + 1 + j]; 
+		for (int i=0; i<n1-1; i++){
+			arr1[i] = arr[l+i];
+		}
+		for (int i=0; i<n2-1; i++){
+			arr2[i] = arr[m+1+i];
+		}
 
-		/* Merge the temp arrays */
+		//Storing max value for optimizing during merging
+		arr1[n1-1] = Integer.MAX_VALUE;
+		arr2[n2-1] = Integer.MAX_VALUE;
 
-		// Initial indexes of first and second subarrays 
-		int i = 0, j = 0; 
+		//Merging arrays
+		int i=0,j=0;
+		for (int k=l; k<=r; k++){
+			if (arr1[i] < arr2[j]){
+				arr[k] = arr1[i];
+				i++;
+			}
+			else {
+				arr[k] = arr2[j];
+				j++;
+			}
+		}
+	}
 
-		// Initial index of merged subarry array 
-		int k = l; 
-		while (i < n1 && j < n2) { 
-			if (L[i] <= R[j]) { 
-				arr[k] = L[i]; 
-				i++; 
-			} 
-			else { 
-				arr[k] = R[j]; 
-				j++; 
-			} 
-			k++; 
-		} 
-
-		/* Copy remaining elements of L[] if any */
-		while (i < n1) { 
-			arr[k] = L[i]; 
-			i++; 
-			k++; 
-		} 
-
-		/* Copy remaining elements of R[] if any */
-		while (j < n2) { 
-			arr[k] = R[j]; 
-			j++; 
-			k++; 
-		} 
-	} 
 
 	// Main function that sorts arr[l..r] using 
 	// merge() 
-	void sort(int arr[], int l, int r) 
+	void mergeSort(int arr[], int l, int r)
 	{ 
 		if (l < r) { 
 			// Find the middle point 
 			int m = (l + r) / 2; 
 
 			// Sort first and second halves 
-			sort(arr, l, m); 
-			sort(arr, m + 1, r); 
+			mergeSort(arr, l, m);
+			mergeSort(arr, m + 1, r);
 
 			// Merge the sorted halves 
-			merge(arr, l, m, r); 
+			merge(arr, l, m, r);
 		} 
 	} 
 
@@ -91,7 +78,7 @@ public class MergeSortAlgo {
 		printArray(arr); 
 
 		MergeSortAlgo ob = new MergeSortAlgo(); 
-		ob.sort(arr, 0, arr.length - 1); 
+		ob.mergeSort(arr, 0, arr.length - 1);
 
 		System.out.println("\nSorted array"); 
 		printArray(arr); 
