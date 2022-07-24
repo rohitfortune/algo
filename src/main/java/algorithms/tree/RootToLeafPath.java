@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 
 //Java program to print all the node to leaf path 

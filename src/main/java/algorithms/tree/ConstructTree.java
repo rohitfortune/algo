@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 // Java program to construct a tree using inorder and preorder traversal
 

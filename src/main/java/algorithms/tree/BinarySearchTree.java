@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 //Java program to demonstrate delete operation in binary search tree 
 public class BinarySearchTree

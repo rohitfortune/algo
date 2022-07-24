@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 /* Java program to determine if binary tree is
 height balanced or not */

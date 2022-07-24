@@ -1,4 +1,4 @@
-package ds.heap;
+package algorithms.heap;
 
 import java.util.*;
 

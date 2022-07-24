@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 // Recursive Java program for level order traversal of Binary Tree
 

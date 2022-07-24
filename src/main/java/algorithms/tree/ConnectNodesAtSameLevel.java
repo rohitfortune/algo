@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 //Java program to connect nodes at same level using extended 
 //pre-order traversal 

@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 public class BinaryTreeArrayImpl {
     private int[] bt;

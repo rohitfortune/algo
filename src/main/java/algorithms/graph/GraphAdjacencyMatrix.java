@@ -1,51 +1,39 @@
-package ds.graph;
+package algorithms.graph;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
-public class GraphAdjacencyList {
+public class GraphAdjacencyMatrix {
+    ArrayList<GraphNode> graphNodes;
+    int[][] adjacencyMatrix;
 
-    ArrayList<GraphNode> graphNodes = new ArrayList<>();
-
-    GraphAdjacencyList(ArrayList<GraphNode> graphNodes){
+    GraphAdjacencyMatrix(ArrayList<GraphNode> graphNodes){
         this.graphNodes = graphNodes;
+        this.adjacencyMatrix = new int[graphNodes.size()][graphNodes.size()];
     }
 
     public void addUndirectedEdge(int i, int j){
-        GraphNode first = graphNodes.get(i);
-        GraphNode second = graphNodes.get(j);
-        first.neighbors.add(second);
-        second.neighbors.add(first);
+        adjacencyMatrix[i][j]=1;
+        adjacencyMatrix[j][i]=1;
     }
 
-    // For printing Graph to the console
-
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < graphNodes.size(); i++) {
-            s.append(graphNodes.get(i).name + ": ");
-            for (int j =0; j < graphNodes.get(i).neighbors.size(); j++) {
-                if (j == graphNodes.get(i).neighbors.size()-1 ) {
-                    s.append((graphNodes.get(i).neighbors.get(j).name) );
-                } else {
-                    s.append((graphNodes.get(i).neighbors.get(j).name) + " -> ");
-                }
-            }
-            s.append("\n");
+    public List<GraphNode> getNeighbours(GraphNode node){
+        ArrayList<GraphNode> neighbours = new ArrayList<>();
+        for (int i=0; i< graphNodes.size(); i++){
+           if (adjacencyMatrix[node.index][i] == 1){
+               neighbours.add(graphNodes.get(i));
+           }
         }
-        return s.toString();
+        return neighbours;
     }
 
-    public void vistDfs(GraphNode node){
+    public void visitDfs(GraphNode node) {
         Stack<GraphNode> stack = new Stack<>();
         stack.push(node);
         node.isVisited=true;
-        while (!stack.isEmpty()){
-            GraphNode currectNode = stack.pop();
-            System.out.print(" "+currectNode.name+" ");
-            for (GraphNode neighbour: currectNode.neighbors){
+        while(!stack.isEmpty()){
+            GraphNode currentNode = stack.pop();
+            System.out.print(" "+currentNode.name+" ");
+            for (GraphNode neighbour: getNeighbours(currentNode)){
                 if (!neighbour.isVisited){
                     stack.push(neighbour);
                     neighbour.isVisited=true;
@@ -56,13 +44,14 @@ public class GraphAdjacencyList {
 
     public void dfs(){
         System.out.println("DFS Traversal: ");
-        for (GraphNode node: graphNodes){
+        for (GraphNode node : graphNodes){
             if (!node.isVisited){
-                vistDfs(node);
+                visitDfs(node);
             }
             //Marking all node isVisited false again
             node.isVisited=false;
         }
+
     }
 
     public void visitBfs(GraphNode node){
@@ -72,7 +61,7 @@ public class GraphAdjacencyList {
         while (!queue.isEmpty()){
             GraphNode currentNode = queue.remove();
             System.out.print(" "+currentNode.name+" ");
-            for (GraphNode neighbour: currentNode.neighbors){
+            for (GraphNode neighbour: getNeighbours(currentNode)){
                 if (!neighbour.isVisited){
                     queue.add(neighbour);
                     neighbour.isVisited=true;
@@ -88,19 +77,36 @@ public class GraphAdjacencyList {
                 visitBfs(node);
             }
             //Marking all node isVisited false again
-           node.isVisited=false;
+            node.isVisited=false;
         }
     }
 
-    // Topological Sort
+
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        s.append("   ");
+        for (int i = 0; i < graphNodes.size(); i++) {
+            s.append(graphNodes.get(i).name + " ");
+        }
+        s.append("\n");
+        for (int i = 0; i < graphNodes.size(); i++) {
+            s.append(graphNodes.get(i).name + ": ");
+            for (int j : adjacencyMatrix[i]) {
+                s.append((j) + " ");
+            }
+            s.append("\n");
+        }
+        return s.toString();
+    }
+
+    //  Topological Sort
     public void addDirectedEdge(int i, int j) {
-        GraphNode first = graphNodes.get(i);
-        GraphNode second = graphNodes.get(j);
-        first.neighbors.add(second);
+        adjacencyMatrix[i][j] = 1;
     }
 
     public void topologicalVisit(GraphNode node, Stack<GraphNode> stack){
-        for (GraphNode neighbour : node.neighbors){
+        for (GraphNode neighbour: getNeighbours(node)){
             if (!neighbour.isVisited){
                 topologicalVisit(neighbour, stack);
             }
@@ -110,11 +116,12 @@ public class GraphAdjacencyList {
     }
 
     public void topologicalSort(){
-        System.out.println("Topological Sort: ");
+        System.out.println("Topological sort: ");
         Stack<GraphNode> stack = new Stack<>();
         for (GraphNode node : graphNodes){
-            if (!node.isVisited)
+            if (!node.isVisited){
                 topologicalVisit(node, stack);
+            }
         }
         while (!stack.isEmpty()){
             System.out.print(stack.pop().name+" ");
@@ -127,9 +134,9 @@ public class GraphAdjacencyList {
         node.isVisited=true;
         while (!queue.isEmpty()){
             GraphNode currentNode = queue.remove();
-            System.out.println("\nPrinting path for "+ currentNode.name);
+            System.out.println("\nPrinting path for: "+currentNode.name);
             printPath(currentNode);
-            for (GraphNode neighbour: currentNode.neighbors){
+            for (GraphNode neighbour : getNeighbours(currentNode)){
                 if (!neighbour.isVisited){
                     queue.add(neighbour);
                     neighbour.isVisited=true;
@@ -138,18 +145,17 @@ public class GraphAdjacencyList {
             }
         }
         //Marking all node isVisited false again
-        for (GraphNode n : graphNodes){
+        for (GraphNode n: graphNodes){
             n.isVisited=false;
         }
     }
 
-    private void printPath(GraphNode node) {
-        if (node.parent != null){
-            printPath(node.parent);
+    private void printPath(GraphNode currentNode) {
+        if (currentNode.parent != null){
+            printPath(currentNode.parent);
         }
-        System.out.print(node.name+" ");
+        System.out.println(currentNode.name+" ");
     }
-
 
     public static void main(String[] args) {
         ArrayList<GraphNode> nodeList = new ArrayList<>();
@@ -161,7 +167,7 @@ public class GraphAdjacencyList {
         nodeList.add(new GraphNode("F",5));
         nodeList.add(new GraphNode("G",6));
 
-        GraphAdjacencyList graph = new GraphAdjacencyList(nodeList);
+        GraphAdjacencyMatrix graph = new GraphAdjacencyMatrix(nodeList);
         graph.addUndirectedEdge(0, 1);
         graph.addUndirectedEdge(0, 2);
         graph.addUndirectedEdge(1, 3);
@@ -187,7 +193,7 @@ public class GraphAdjacencyList {
         nodeList.add(new GraphNode("G",6));
         nodeList.add(new GraphNode("H",7));
 
-        GraphAdjacencyList directedGraph = new GraphAdjacencyList(nodeList);
+        GraphAdjacencyMatrix directedGraph = new GraphAdjacencyMatrix(nodeList);
         directedGraph.addDirectedEdge(0,2);
         directedGraph.addDirectedEdge(1,2);
         directedGraph.addDirectedEdge(1,3);
@@ -199,4 +205,5 @@ public class GraphAdjacencyList {
         System.out.println("\nDirected Graph: \n"+directedGraph.toString());
         directedGraph.topologicalSort();
     }
+
 }

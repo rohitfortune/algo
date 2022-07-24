@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 //Java program to check if a given tree is BST. 
 public class CheckBST {

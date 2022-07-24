@@ -1,6 +1,6 @@
 package algorithms.sorting;
 
-import ds.heap.MyBinaryHeap;
+import algorithms.heap.MyBinaryHeap;
 
 public class HeapSortAlgo {
 

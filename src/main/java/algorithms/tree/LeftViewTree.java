@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 // Data structure to store a Binary Tree node
 

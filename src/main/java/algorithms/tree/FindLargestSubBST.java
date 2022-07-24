@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 //Java program to find largest BST subtree in given Binary Tree 
 

@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 // Java program of iterative traversal based method to
 // find common elements in two BSTs.

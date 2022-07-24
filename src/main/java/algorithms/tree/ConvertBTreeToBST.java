@@ -1,4 +1,4 @@
-package ds.tree;
+package algorithms.tree;
 
 import java.util.TreeSet;
 import java.util.Iterator;
